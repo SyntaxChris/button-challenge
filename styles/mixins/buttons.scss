@@ -27,9 +27,6 @@
       }
       button:enabled{
         background-color: map-get($version, 'color-ok');
-        &:hover{
-          background-color: map-get($version, 'color-ok');
-        }
       }
     }
   }
