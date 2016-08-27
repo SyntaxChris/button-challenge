@@ -71,7 +71,7 @@
     padding: 0;
     &:hover{
       button:disabled{
-        animation: 0.7s ease-in .5s shake;
+        animation: 0.7s ease-in .3s shake;
         svg{
           &.fat-arrow{
             display: none;
