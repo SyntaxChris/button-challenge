@@ -10,8 +10,12 @@
 @mixin btn-shapes($map) {
   @each $shape, $value in $map {
     &.#{$shape} {
+      border-radius: $value;
       button{
         border-radius: $value;
+        svg{
+          border-radius: $value;
+        }
       }
     }
   }
@@ -34,7 +38,7 @@
 
 @mixin validation-btn-static($extend: true){
   $button-selector: map-get(
-    $btn-placeholders, 'button'
+    $btn-placeholders, 'validation-button'
   );
 
   @if $extend == true {
@@ -43,11 +47,18 @@
 
       $btn-placeholders: map-merge(
         $btn-placeholders, 
-        ('button': $button-selector)
+        ('validation-button': $button-selector)
       ) !global;
       
       @at-root %#{$button-selector} {
         @include validation-btn-static(false);
+        @include btn-sizes($btn-sizes); 
+        @include btn-shapes($btn-shapes);
+        @include btn-color-themes($btn-color-themes);
+        @include shake;
+        @include cross-x;
+        @include arrow-stem;
+        @include arrow-pointer;
       }
     }
     @extend %#{$button-selector};
@@ -72,7 +83,7 @@
                 animation-fill-mode: forwards;
               }
               &.second-x{
-                animation: .1s ease-out .3s cross-x;
+                animation: .1s ease-out .2s cross-x;
                 animation-fill-mode: forwards;
               }
             }
@@ -128,9 +139,6 @@
         transition: all 0.1s ease;
         pointer-events: none;
         box-shadow: 0px 0px 0px rgba(0,0,0, 0.3);
-        &:hover{
-          background-color: black;
-        }
       }
     }
   }
@@ -138,11 +146,4 @@
 
 @mixin validation-btn($extend: true){
   @include validation-btn-static($extend);
-  @include btn-sizes($btn-sizes); 
-  @include btn-shapes($btn-shapes);
-  @include btn-color-themes($btn-color-themes);
-  @include shake;
-  @include cross-x;
-  @include arrow-stem;
-  @include arrow-pointer;
 }
